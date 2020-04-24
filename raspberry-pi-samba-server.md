@@ -62,6 +62,7 @@ You could probably do this with a RPi 3 or lower, but you'll need to make sure y
         guest only=no
         guest ok=yes
         ```
+    - I set `<SHARE_NAME>` to something silly and memorable    
     - I set `<SAMBA_USER>` to the machine's user: `pi`    
 - Configure password for Samba user:
     - `sudo smbpasswd -a pi`
