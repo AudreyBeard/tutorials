@@ -33,11 +33,13 @@ You could probably do this with a RPi 3 or lower, but you'll need to make sure y
 - Edit `/etc/fstab` as `sudo`:
     ```
    # device           mountpoint   fstype  options                                      dump fsck
-   LABEL=<LABEL_NAME> <MOUNTPOINT> ext4    defaults,nofail,x-systemd.device-timeout=1ms 0    2
+   LABEL=<LABEL_NAME> <MOUNTPOINT> ext4    defaults,nofail,x-systemd.device-timeout=5s 0    2
     ```
+    - The `nofail` option means that if the drive doesn't mount, the machine will still boot if it can't mount
+    - The `x-systemd.device-timeout=5s` tells the machine to wait 5 seconds to mount before moving on. The default is 90 seconds if `nofail` is used
 - Check this with `sudo mount -a`:
     - If it doesn't work, edit the file, you messed something up
-- If the machine doesn't boot after this, eject the microSD card, stick it in a Linux box, and comment out the line - you done messed up    
+- If the machine doesn't boot after this, don't stress. Just eject the microSD card, stick it in a Linux box, and comment out the line. 
 
 ## Install and configure Samba
 - Update and upgrade apt repos:
@@ -47,7 +49,7 @@ You could probably do this with a RPi 3 or lower, but you'll need to make sure y
 - Create mount point wherever you want:
     - `mkdir -m 1777 <MOUNTPOINT>`
     - `chmod 777 <MOUNTPOINT>` to give rwx permissions to all
-    - I set `<MOUNTPOINT>` to something like `/home/shareX`
+    - I set `<MOUNTPOINT>` to something like `/home/share`
 - Configure Samba to look for and share drive:
     - Edit `/etc/samba/smb.conf` as `sudo`:
         ```
@@ -62,7 +64,7 @@ You could probably do this with a RPi 3 or lower, but you'll need to make sure y
         guest only=no
         guest ok=yes
         ```
-    - I set `<SHARE_NAME>` to something silly and memorable    
+    - I set `<SHARE_NAME>` to something memorable - this is what you'll see on the network    
     - I set `<SAMBA_USER>` to the machine's user: `pi`    
 - Configure password for Samba user:
     - `sudo smbpasswd -a pi`
