@@ -1,25 +1,27 @@
 # Installing OpenCV 3.4 in a Python 3.6 virtual environment
 Originally published: 2018-02-05
+
 Last Edited: 2020-04-28
 
 ## Contents
 1. [Background](#background)
 1. [Preparation](#preparation)
-1. [Build & Install Python 3.6.4]()
+1. [Build & Install Python 3.6.4](#build--install-python-364)
 1. [Virtual Environment](#virtual-environment)
-1. [Building & Installing OpenCV]()
+1. [Building & Installing OpenCV](#building--installing-opencv)
 1. [Testing](#testing)
 1. [Sources](#sources)
 
 ## Background
 If you do research in computer vision, you probably want OpenCV. You also probably want to keep all software installations as local as possible (so you don't interfere with other projects), which may spur you to use a virtual environment. I've spent the last few weeks trying to get OpenCV installed under such conditions, and I'd like to share what I've found.
+
 **Please note that my machine is running Ubuntu 14.04, so if you're using something more modern, YMMV.**
 
 ## Preparation
 First, let's set up some important environment variables to make it go smoothly. Add the following lines to your ~/.bashrc (or similar) and then reload it:
 
 ```
-export LD_LIBRARY_PATH=$HOME/.python3.6.4/lib <del>/usr/local/bin/python</del>
+export LD_LIBRARY_PATH=$HOME/.python3.6.4/lib
 export PYTHON=$HOME/.python3.6.4/bin/python3.6
 export PIP=$HOME/.python3.6.4/bin/pip3
 ```
